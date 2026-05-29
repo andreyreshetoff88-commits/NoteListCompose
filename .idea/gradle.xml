@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/app-data" />
+            <option value="$PROJECT_DIR$/app/app-domain" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/common" />
+            <option value="$PROJECT_DIR$/core/database" />
+            <option value="$PROJECT_DIR$/core/network" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/groups" />
+            <option value="$PROJECT_DIR$/feature/groups/groups-data" />
+            <option value="$PROJECT_DIR$/feature/groups/groups-domain" />
+            <option value="$PROJECT_DIR$/feature/groups/groups-presentation" />
+            <option value="$PROJECT_DIR$/feature/login" />
+            <option value="$PROJECT_DIR$/feature/login/login-data" />
+            <option value="$PROJECT_DIR$/feature/login/login-domain" />
+            <option value="$PROJECT_DIR$/feature/login/login-presentation" />
+            <option value="$PROJECT_DIR$/feature/profile" />
+            <option value="$PROJECT_DIR$/feature/profile/profile-data" />
+            <option value="$PROJECT_DIR$/feature/profile/profile-domain" />
+            <option value="$PROJECT_DIR$/feature/profile/profile-presentation" />
+            <option value="$PROJECT_DIR$/feature/register" />
+            <option value="$PROJECT_DIR$/feature/register/register-data" />
+            <option value="$PROJECT_DIR$/feature/register/register-domain" />
+            <option value="$PROJECT_DIR$/feature/register/register-presentation" />
+            <option value="$PROJECT_DIR$/feature/verification" />
+            <option value="$PROJECT_DIR$/feature/verification/verification-data" />
+            <option value="$PROJECT_DIR$/feature/verification/verification-domain" />
+            <option value="$PROJECT_DIR$/feature/verification/verification-presentation" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
