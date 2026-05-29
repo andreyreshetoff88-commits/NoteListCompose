@@ -39,13 +39,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ru.reshetoff.common.Constants.EMPTY_FIELD_ERROR
+import ru.reshetoff.common.R
 import ru.reshetoff.common.ui.AppColors
 import ru.reshetoff.common.ui.TextSize
-import ru.reshetoff.login_presentation.R
 import ru.reshetoff.login_presentation.utils.LoginState
 
 @Composable
@@ -137,7 +136,7 @@ fun LoginScreen(
                     passwordError = null
                 },
                 label = { Text("Пароль") },
-                placeholder = { Text("Enter password") },
+                placeholder = { Text("Введите пароль") },
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.medium,
                 isError = passwordError != null,
@@ -157,7 +156,8 @@ fun LoginScreen(
                     focusedLabelColor = AppColors.primary,
                     cursorColor = AppColors.inputCursor
                 ),
-                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                visualTransformation = if (passwordVisible) VisualTransformation.None
+                else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 trailingIcon = {
                     val icon = if (passwordVisible)

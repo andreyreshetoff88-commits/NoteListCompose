@@ -1,8 +1,6 @@
 package ru.reshetoff.notelistcompose
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -69,7 +67,13 @@ fun AppNavigation(
 
         //Register screen
         composable(Screen.Register.route) {
-            RegisterScreen()
+            RegisterScreen(
+                onRegisterSuccess = {
+                    navController.navigate(Screen.Groups.route) {
+                        popUpTo(Screen.Login.route) { inclusive = true }
+                    }
+                }
+            )
         }
 
         //Main Screen
