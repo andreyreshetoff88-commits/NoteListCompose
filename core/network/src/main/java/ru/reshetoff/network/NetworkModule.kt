@@ -1,6 +1,5 @@
 package ru.reshetoff.network
 
-import androidx.compose.ui.graphics.vector.Group
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -24,7 +23,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideGson() = Gson()
-    
+
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
@@ -84,4 +83,8 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideUtils(gson: Gson) = NetworkUtils(gson = gson)
 }

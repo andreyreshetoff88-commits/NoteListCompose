@@ -1,4 +1,4 @@
-package ru.reshetoff.common.model.errorresponse
+package ru.reshetoff.network.model.errorresponse
 
 data class ErrorDetail(
     val field: String?,

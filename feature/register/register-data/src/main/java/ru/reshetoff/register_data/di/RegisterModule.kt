@@ -1,6 +1,5 @@
 package ru.reshetoff.register_data.di
 
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import ru.reshetoff.common.Constants.UNAUTHORIZED
 import ru.reshetoff.database.SharedPref
+import ru.reshetoff.network.NetworkUtils
 import ru.reshetoff.register_data.api.RegisterApi
 import ru.reshetoff.register_data.repository.RegisterRepositoryImpl
 import ru.reshetoff.register_domain.repository.RegisterRepository
@@ -28,12 +28,12 @@ class RegisterModule {
     fun provideRegisterRepository(
         registerApi: RegisterApi,
         sharedPref: SharedPref,
-        gson: Gson
+        networkUtils: NetworkUtils
     ): RegisterRepository {
         return RegisterRepositoryImpl(
             registerApi = registerApi,
             sharedPref = sharedPref,
-            gson = gson
+            networkUtils = networkUtils
         )
     }
 

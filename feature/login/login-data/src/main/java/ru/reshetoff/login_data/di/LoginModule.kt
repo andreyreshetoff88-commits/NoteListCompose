@@ -1,6 +1,5 @@
 package ru.reshetoff.login_data.di
 
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +11,7 @@ import ru.reshetoff.login_data.api.LoginApi
 import ru.reshetoff.login_data.repository.LoginRepositoryImpl
 import ru.reshetoff.login_domain.repository.LoginRepository
 import ru.reshetoff.login_domain.usecase.LoginUseCase
+import ru.reshetoff.network.NetworkUtils
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -27,9 +27,13 @@ class LoginModule {
     fun provideLoginRepository(
         loginApi: LoginApi,
         sharedPref: SharedPref,
-        gson: Gson
+        networkUtils: NetworkUtils
     ): LoginRepository {
-        return LoginRepositoryImpl(loginApi = loginApi, sharedPref = sharedPref, gson = gson)
+        return LoginRepositoryImpl(
+            loginApi = loginApi,
+            sharedPref = sharedPref,
+            networkUtils = networkUtils
+        )
     }
 
     @Provides
