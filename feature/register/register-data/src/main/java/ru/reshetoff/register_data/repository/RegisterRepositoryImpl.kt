@@ -42,6 +42,12 @@ class RegisterRepositoryImpl @Inject constructor(
 
     override suspend fun register(registerRequest: RegisterRequest): Result<Unit> {
         return try {
+            val sendVerificationResponse = registerApi.sendVerification(registerRequest.email)
+            if (!sendVerificationResponse.isSuccessful) {
+                val errorMessage = networkUtils.parseErrorResponse(sendVerificationResponse)
+                return Result.failure(Exception(errorMessage))
+            }
+
             val response = registerApi.register(registerRequest.toDto())
             if (response.isSuccessful) {
                 val registerResponse =

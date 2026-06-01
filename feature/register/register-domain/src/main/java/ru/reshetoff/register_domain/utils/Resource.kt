@@ -1,4 +1,4 @@
-package ru.reshetoff.utils
+package ru.reshetoff.register_domain.utils
 
 sealed class Resource<T>(
     val data: T? = null,

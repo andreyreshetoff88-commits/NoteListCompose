@@ -1,22 +1,30 @@
 package ru.reshetoff.notelistcompose
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.reshetoff.common.State
 import ru.reshetoff.login_presentation.ui.LoginScreen
 import ru.reshetoff.notelistcompose.navigation.MainScreenWithBottomBar
 import ru.reshetoff.notelistcompose.navigation.Screen
-import ru.reshetoff.notelistcompose.ui.MainViewModel
 import ru.reshetoff.notelistcompose.ui.theme.NoteListComposeTheme
 import ru.reshetoff.register_presentation.ui.RegisterScreen
 
@@ -41,12 +49,39 @@ class MainActivity : ComponentActivity() {
 fun AppNavigation(
     viewModel: MainViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
     val navController = rememberNavController()
+    var startDestination by remember { mutableStateOf(Screen.Groups.route) }
+    val syncState by viewModel.syncState.collectAsStateWithLifecycle()
 
-    val startDestination = if (viewModel.checkToken()) {
-        Screen.Groups.route
-    } else {
-        Screen.Login.route
+    LaunchedEffect(Unit) {
+        viewModel.checkToken().collect { hasToken ->
+            startDestination = if (hasToken) {
+                viewModel.sync()
+                Screen.Groups.route
+            } else {
+                Screen.Login.route
+            }
+        }
+    }
+
+    LaunchedEffect(syncState) {
+        when (syncState) {
+            is State.Loading -> {}
+            is State.Success -> {
+                if (!syncState.data!!) {
+
+                }
+            }
+
+            is State.Error -> Toast.makeText(
+                context,
+                syncState.message,
+                Toast.LENGTH_SHORT
+            ).show()
+
+            else -> Unit
+        }
     }
 
     NavHost(navController = navController, startDestination = startDestination) {
@@ -78,7 +113,7 @@ fun AppNavigation(
 
         //Main Screen
         composable(Screen.Groups.route) {
-            MainScreenWithBottomBar()
+            MainScreenWithBottomBar(syncState)
         }
     }
 }

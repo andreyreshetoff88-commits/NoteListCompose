@@ -10,5 +10,5 @@ data class ProfileEntity(
     val displayName: String,
     val phoneNumber: String,
     val email: String,
-    val isVerified: Boolean,
+    val isVerified: Boolean
 )

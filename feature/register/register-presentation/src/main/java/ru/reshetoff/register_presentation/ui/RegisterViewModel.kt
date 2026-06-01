@@ -15,7 +15,7 @@ import ru.reshetoff.register_domain.model.Country
 import ru.reshetoff.register_domain.model.RegisterRequest
 import ru.reshetoff.register_domain.usecase.GetCountryListUseCase
 import ru.reshetoff.register_domain.usecase.RegisterUseCase
-import ru.reshetoff.utils.Resource
+import ru.reshetoff.register_domain.utils.Resource
 import javax.inject.Inject
 
 @HiltViewModel

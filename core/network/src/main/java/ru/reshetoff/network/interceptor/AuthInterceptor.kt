@@ -1,5 +1,6 @@
 package ru.reshetoff.network.interceptor
 
+import android.util.Log
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -56,6 +57,7 @@ class AuthInterceptor @Inject constructor(
                     }
 
                     val response = runBlocking {
+                        Log.d("ololo", "refreshTokenAndRetry: refresh token")
                         refreshApi.refreshToken(RefreshRequest(refreshToken))
                     }
                     if (response.isSuccessful) {

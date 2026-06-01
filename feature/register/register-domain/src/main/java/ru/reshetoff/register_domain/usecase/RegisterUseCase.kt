@@ -3,7 +3,7 @@ package ru.reshetoff.register_domain.usecase
 import kotlinx.coroutines.flow.flow
 import ru.reshetoff.register_domain.model.RegisterRequest
 import ru.reshetoff.register_domain.repository.RegisterRepository
-import ru.reshetoff.utils.Resource
+import ru.reshetoff.register_domain.utils.Resource
 import javax.inject.Inject
 
 class RegisterUseCase @Inject constructor(private val registerRepository: RegisterRepository) {

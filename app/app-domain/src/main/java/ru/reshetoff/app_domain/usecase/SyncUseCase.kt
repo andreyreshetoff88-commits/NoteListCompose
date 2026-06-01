@@ -1,14 +1,14 @@
-package ru.reshetoff.register_domain.usecase
+package ru.reshetoff.app_domain.usecase
 
 import kotlinx.coroutines.flow.flow
-import ru.reshetoff.register_domain.repository.RegisterRepository
-import ru.reshetoff.register_domain.utils.Resource
+import ru.reshetoff.app_domain.repository.AppRepository
+import ru.reshetoff.app_domain.utils.Resource
 import javax.inject.Inject
 
-class GetCountryListUseCase @Inject constructor(private val registerRepository: RegisterRepository) {
+class SyncUseCase @Inject constructor(private val appRepository: AppRepository) {
     fun execute() = flow {
         emit(Resource.Loading())
-        registerRepository.getCountryList().fold(
+        appRepository.sync().fold(
             onSuccess = { data ->
                 emit(Resource.Success(data = data))
             },

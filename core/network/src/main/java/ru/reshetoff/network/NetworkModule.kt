@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.reshetoff.common.Constants.AUTHORIZED
 import ru.reshetoff.common.Constants.BASE_URL
 import ru.reshetoff.common.Constants.UNAUTHORIZED
+import ru.reshetoff.network.api.RefreshApi
 import ru.reshetoff.network.interceptor.AuthInterceptor
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
@@ -87,4 +88,9 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideUtils(gson: Gson) = NetworkUtils(gson = gson)
+
+    @Provides
+    @Singleton
+    fun provideRefreshApi(@Named(UNAUTHORIZED) retrofit: Retrofit): RefreshApi =
+        retrofit.create(RefreshApi::class.java)
 }
